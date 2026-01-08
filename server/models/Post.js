@@ -11,7 +11,7 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     authorId: {
-      type: ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
@@ -19,4 +19,5 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default Post = mongoose.model("Post", postSchema);
+const Post = mongoose.model("Post", postSchema);
+export default Post;
