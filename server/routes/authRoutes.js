@@ -5,7 +5,7 @@ import {
   getCurrentUser,
   login,
   register,
-} from "../controllers/authControllers";
+} from "../controllers/authControllers.js";
 import { authenticate } from "../middleware/auth.js";
 
 authRouter.post("/register", register);

@@ -5,10 +5,15 @@ import {
   editPost,
   getAllPosts,
   getPost,
-} from "../controllers/postControllers";
+} from "../controllers/postControllers.js";
+import { authenticate } from "../middleware/auth.js";
 const postRouter = express.Router();
 
-postRouter.route("/").get(getAllPosts).post(createPost);
-postRouter.route("/:id").get(getPost).put(editPost).delete(deletePost);
+postRouter.route("/").get(getAllPosts).post(authenticate, createPost);
+postRouter
+  .route("/:id")
+  .get(getPost)
+  .put(authenticate, editPost)
+  .delete(authenticate, deletePost);
 
 export default postRouter;

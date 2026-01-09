@@ -1,10 +1,15 @@
 import express from "express";
+import {
+  getAllUsers,
+  getUser,
+  getUserPosts,
+} from "../controllers/userControllers.js";
 const userRouter = express.Router();
 
-userRouter.get("/");
+userRouter.get("/", getAllUsers);
 
-userRouter.get("/:userId");
+userRouter.get("/:id", getUser);
 
-userRouter.get("/:userId/posts");
+userRouter.get("/:id/posts", getUserPosts);
 
 export default userRouter;
