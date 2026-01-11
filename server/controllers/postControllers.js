@@ -2,7 +2,9 @@ import Post from "../models/Post.js";
 
 export async function getAllPosts(req, res) {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find()
+      .populate("authorId", "username email")
+      .sort({ createAt: -1 });
     res.status(200).json({
       message: "Posts fetched successfully",
       data: posts,
