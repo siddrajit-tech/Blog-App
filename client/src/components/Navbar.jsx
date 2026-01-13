@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../auth/AuthContext.jsx";
+import { useAuth } from "../features/auth/AuthContext.jsx";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -31,12 +31,12 @@ export default function Navbar() {
         ) : (
           <>
             <Link to="/login">
-              <button className="text-blue-900 bg-white px-4 py-1.5 cursor-pointer rounded-xl">
+              <button className="text-blue-900 bg-white px-4.5 py-2 cursor-pointer rounded-xl">
                 Sign In
               </button>
             </Link>
             <Link to="/register">
-              <button className="text-blue-200 bg-transparent px-4 py-1.5 cursor-pointer rounded-xl border border-blue-200">
+              <button className="text-blue-200 bg-transparent px-4 py-1.5 cursor-pointer rounded-xl border-2 border-blue-200">
                 Sign Up
               </button>
             </Link>
