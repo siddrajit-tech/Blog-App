@@ -12,28 +12,17 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function checkAuth() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-
     try {
-      const userData = await getCurrentUser(token);
-      if (!userData) {
-        logout();
-      } else {
-        setUser(userData);
-      }
+      const userData = await getCurrentUser();
+      setUser(userData);
     } catch {
-      logout();
+      setUser(null);
     } finally {
       setLoading(false);
     }
   }
 
-  function login(token, userData) {
-    localStorage.setItem("token", token);
+  function login(userData) {
     setUser(userData);
   }
 
@@ -43,7 +32,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading, checkAuth }}>
       {children}
     </AuthContext.Provider>
   );

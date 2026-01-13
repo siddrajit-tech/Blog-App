@@ -2,6 +2,7 @@ import express from "express";
 import { connectDb } from "./config/db.js";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import postRouter from "./routes/postRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoutes.js";
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 4500;
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173",

@@ -32,12 +32,12 @@ export default function Navbar() {
           <>
             <Link to="/login">
               <button className="text-blue-900 bg-white px-4.5 py-2 cursor-pointer rounded-xl">
-                Sign In
+                Login
               </button>
             </Link>
             <Link to="/register">
               <button className="text-blue-200 bg-transparent px-4 py-1.5 cursor-pointer rounded-xl border-2 border-blue-200">
-                Sign Up
+                Register
               </button>
             </Link>
           </>

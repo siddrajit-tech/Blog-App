@@ -1,8 +1,8 @@
 const API_URL = "http://localhost:4500/api";
 
-export async function getCurrentUser(token) {
+export async function getCurrentUser() {
   const response = await fetch(`${API_URL}/auth/me`, {
-    headers: { Authorization: `Bearer ${token}` },
+    credentials: "include",
   });
 
   if (response.ok) {

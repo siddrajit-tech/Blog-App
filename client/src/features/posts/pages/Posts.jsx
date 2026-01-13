@@ -19,7 +19,7 @@ export default function Posts() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => {
-            return <PostCard key={post.id} {...post} />;
+            return <PostCard key={post._id} {...post} />;
           })}
         </div>
       </div>
