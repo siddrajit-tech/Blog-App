@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getCurrentUser } from "./authServices";
+import * as auth from "./authServices";
 
 const AuthContext = createContext();
 
@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
 
   async function checkAuth() {
     try {
-      const userData = await getCurrentUser();
+      const userData = await auth.getCurrentUser();
       setUser(userData);
     } catch {
       setUser(null);
@@ -22,17 +22,25 @@ export function AuthProvider({ children }) {
     }
   }
 
-  function login(userData) {
+  async function register(credentials) {
+    const userData = await auth.register(credentials);
     setUser(userData);
   }
 
-  function logout() {
-    localStorage.removeItem("token");
+  async function login(credentials) {
+    const userData = await auth.login(credentials);
+    setUser(userData);
+  }
+
+  async function logout() {
+    await auth.logout();
     setUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading, checkAuth }}>
+    <AuthContext.Provider
+      value={{ user, login, logout, loading, checkAuth, register }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -25,8 +25,13 @@ export default function Navbar() {
       <div className="flex gap-6">
         {user ? (
           <>
-            <span>Welcome, {user.username || "User"}</span>
-            <button onClick={handleLogout}>Logout</button>
+            <span>Welcome, {user.user.username}</span>
+            <button
+              onClick={handleLogout}
+              className="text-blue-900 bg-white px-4.5 py-2 cursor-pointer rounded-xl"
+            >
+              Logout
+            </button>
           </>
         ) : (
           <>

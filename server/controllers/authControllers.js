@@ -7,7 +7,7 @@ export async function register(req, res) {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-      res.status(400).json({ message: "All fields are required " });
+      return res.status(400).json({ message: "All fields are required " });
     }
 
     if (password.length < 6) {
@@ -34,6 +34,19 @@ export async function register(req, res) {
       password: hashedPassword,
     });
 
+    const token = jwt.sign(
+      { userId: newUser._id },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    res.cookie("accessToken", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 1000,
+    });
+
     res.status(201).json({
       message: "User registered successfully",
       user: {
@@ -53,7 +66,7 @@ export async function login(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(400).json({ message: "All fields are required " });
+      return res.status(400).json({ message: "All fields are required " });
     }
 
     const user = await User.findOne({ email });
@@ -72,9 +85,15 @@ export async function login(req, res) {
       { expiresIn: "7d" }
     );
 
+    res.cookie("accessToken", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 1000,
+    });
+
     res.status(200).json({
       message: "Login successful",
-      token,
       user: {
         id: user._id,
         username: user.username,
@@ -100,6 +119,24 @@ export async function getCurrentUser(req, res) {
       },
     });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error getting user" });
+  }
+}
+
+export function logout(req, res) {
+  try {
+    res.clearCookie("accessToken", {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: false,
+    });
+    res.status(201).json({
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    console.log("Error logging out user", error);
+    res.status(500).json({
+      message: "Server error lgging out user",
+    });
   }
 }
