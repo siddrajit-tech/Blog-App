@@ -42,7 +42,7 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex bg-slate-50 justify-center items-center ">
+    <div className="min-h-screen flex bg-slate-50 justify-center items-center my-7">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col bg-white px-6 py-10 w-full max-w-md h-auto shadow-lg border border-slate-200 rounded-2xl"
@@ -115,7 +115,7 @@ export default function Register() {
         </div>
 
         <button
-          className="bg-blue-950 rounded-lg text-white p-3 font-medium mb-3"
+          className="bg-blue-950 rounded-lg text-white p-3 font-medium mb-3 hover:bg-blue-900 cursor-pointer transition"
           disabled={loading}
         >
           {loading ? (

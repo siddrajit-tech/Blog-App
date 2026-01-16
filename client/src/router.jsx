@@ -7,6 +7,7 @@ import Users from "./features/users/pages/Users";
 import { postLoader, postsLoader } from "./features/posts/postsLoaders";
 import NewPostForm from "./features/posts/pages/NewPostForm";
 import Post from "./features/posts/pages/Post";
+import { createPostAction } from "./features/posts/postsActions";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
         path: "posts",
         children: [
           { index: true, element: <Posts />, loader: postsLoader },
-          { path: "new", element: <NewPostForm /> },
+          { path: "new", element: <NewPostForm />, action: createPostAction },
           { path: ":id", element: <Post />, loader: postLoader },
         ],
       },
