@@ -11,16 +11,18 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="flex bg-blue-950 text-white justify-around items-center">
-      <h3 className="font-medium text-[2.25rem]">Blog App</h3>
-      <ul className="flex gap-6">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/users">Users</Link>
-        </li>
-      </ul>
+    <nav className="flex sticky bg-blue-950 text-white justify-between items-center shadow-lg py-2 px-15 w-full">
+      <div className="flex gap-10 items-center">
+        <h3 className="font-medium text-[2.25rem]">Blog App</h3>
+        <ul className="flex gap-6 text-lg">
+          <li className="hover:underline focus:underline focus:outline-none">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="hover:underline">
+            <Link to="/users">Users</Link>
+          </li>
+        </ul>
+      </div>
 
       <div className="flex gap-6">
         {user ? (
@@ -28,7 +30,7 @@ export default function Navbar() {
             <span>Welcome, {user.user.username}</span>
             <button
               onClick={handleLogout}
-              className="text-blue-900 bg-white px-4.5 py-2 cursor-pointer rounded-xl"
+              className="text-blue-950 bg-white px-4.5 py-2 cursor-pointer rounded-lg"
             >
               Logout
             </button>
@@ -36,12 +38,12 @@ export default function Navbar() {
         ) : (
           <>
             <Link to="/login">
-              <button className="text-blue-900 bg-white px-4.5 py-2 cursor-pointer rounded-xl">
+              <button className="text-blue-900 bg-white px-4.5 py-2 cursor-pointer rounded-lg">
                 Login
               </button>
             </Link>
             <Link to="/register">
-              <button className="text-blue-200 bg-transparent px-4 py-1.5 cursor-pointer rounded-xl border-2 border-blue-200">
+              <button className="text-blue-100 bg-transparent px-4 py-1.5 cursor-pointer rounded-lg border-2 border-blue-50">
                 Register
               </button>
             </Link>
