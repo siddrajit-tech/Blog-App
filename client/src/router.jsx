@@ -8,6 +8,7 @@ import { postLoader, postsLoader } from "./features/posts/postsLoaders";
 import NewPostForm from "./features/posts/pages/NewPostForm";
 import Post from "./features/posts/pages/Post";
 import { createPostAction } from "./features/posts/postsActions";
+import PrivateRoute from "./features/auth/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -19,13 +20,23 @@ export const router = createBrowserRouter([
         path: "posts",
         children: [
           { index: true, element: <Posts />, loader: postsLoader },
-          { path: "new", element: <NewPostForm />, action: createPostAction },
           { path: ":id", element: <Post />, loader: postLoader },
         ],
       },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "users", element: <Users /> },
+
+      {
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: "posts/new",
+            element: <NewPostForm />,
+            action: createPostAction,
+          },
+        ],
+      },
     ],
   },
 ]);

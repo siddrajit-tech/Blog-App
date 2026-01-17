@@ -45,7 +45,7 @@ export default function NewPostForm() {
           <div className="flex gap-3">
             <button
               type="submit"
-              className="bg-blue-700 text-white px-4 py-2 rounded cursor-pointer"
+              className="bg-blue-900 text-white px-4 py-2 rounded cursor-pointer"
             >
               Publish Post
             </button>
