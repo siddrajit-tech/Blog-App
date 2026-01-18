@@ -11,6 +11,8 @@ export async function getUser(id) {
     if (!response.ok) {
       throw new Error(`Error in service: ${response.status}`);
     }
+    console.log(response.json());
+
     return response.json();
   } catch (err) {
     console.log(err);

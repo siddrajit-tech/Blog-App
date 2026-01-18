@@ -26,7 +26,7 @@ export default function Navbar() {
 
       <div className="flex gap-6">
         {user ? (
-          <>
+          <div className="flex gap-6 items-center">
             <span>Welcome, {user.user.username}</span>
             <button
               onClick={handleLogout}
@@ -34,7 +34,7 @@ export default function Navbar() {
             >
               Logout
             </button>
-          </>
+          </div>
         ) : (
           <>
             <Link to="/login">

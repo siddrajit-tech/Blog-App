@@ -13,6 +13,8 @@ import {
 } from "./features/posts/postsActions";
 import PrivateRoute from "./features/auth/PrivateRoute";
 import EditPostForm from "./features/posts/pages/EditPostForm";
+import { usersLoader } from "./features/users/userLoaders";
+import User from "./features/users/pages/User";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +31,13 @@ export const router = createBrowserRouter([
       },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
-      { path: "users", element: <Users /> },
+      {
+        path: "users",
+        children: [
+          { index: true, element: <Users />, loader: usersLoader },
+          { path: ":id", element: <User />, loader: usersLoader },
+        ],
+      },
 
       {
         element: <PrivateRoute />,
