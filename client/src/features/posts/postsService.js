@@ -31,6 +31,21 @@ export async function createPost(postData) {
   return response.json();
 }
 
+export async function editPost(id, postData) {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify(postData),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error in service: ${response.status}`);
+  }
+
+  return response.json();
+}
+
 export async function deletePost(id) {
   const response = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",

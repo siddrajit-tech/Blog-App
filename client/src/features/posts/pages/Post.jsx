@@ -50,9 +50,12 @@ export default function Post() {
           {post.body}
         </div>
         <div className="flex gap-3 pt-6 border-t border-gray-200">
-          <button className="bg-slate-800 text-white px-6 py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors cursor-pointer">
-            Edit Post
-          </button>
+          <Link to={`edit`}>
+            <button className="bg-slate-800 text-white px-6 py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors cursor-pointer">
+              Edit Post
+            </button>
+          </Link>
+
           <button
             className="bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors cursor-pointer"
             onClick={() => handleDelete(post._id)}

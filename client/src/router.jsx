@@ -7,8 +7,12 @@ import Users from "./features/users/pages/Users";
 import { postLoader, postsLoader } from "./features/posts/postsLoaders";
 import NewPostForm from "./features/posts/pages/NewPostForm";
 import Post from "./features/posts/pages/Post";
-import { createPostAction } from "./features/posts/postsActions";
+import {
+  createPostAction,
+  editPostAction,
+} from "./features/posts/postsActions";
 import PrivateRoute from "./features/auth/PrivateRoute";
+import EditPostForm from "./features/posts/pages/EditPostForm";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +38,12 @@ export const router = createBrowserRouter([
             path: "posts/new",
             element: <NewPostForm />,
             action: createPostAction,
+          },
+          {
+            path: "posts/:id/edit",
+            element: <EditPostForm />,
+            action: editPostAction,
+            loader: postsLoader,
           },
         ],
       },

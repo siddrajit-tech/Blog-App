@@ -79,7 +79,7 @@ export async function editPost(req, res) {
         message: "Post not found",
       });
 
-    if (post.authorId.toString() !== req.user._id) {
+    if (post.authorId.toString() !== req.user._id.toString()) {
       return res.status(403).json({
         message: "Not authorized to edit post",
       });
